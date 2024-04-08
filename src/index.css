@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply absolute left-0 right-0 mx-auto max-w-xl w-full;
+}
+
+.action-btn {
+  @apply rounded-full p-2 active:scale-75 duration-200 translate-x-[200%] opacity-0 pointer-events-none group-hover:translate-x-0 group-hover:opacity-100 group-hover:pointer-events-auto;
+}
