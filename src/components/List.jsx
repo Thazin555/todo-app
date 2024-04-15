@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const List = (props) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -10,7 +12,35 @@ const List = (props) => {
   };
 
   const handleDelBtn = () => {
-    props.deleteTask(props.id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#581b98",
+      cancelButtonColor: "#ff1f5a",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        props.deleteTask(props.id);
+        props.toggleDark
+          ? toast("List deleted!", {
+              icon: "👌",
+              style: {
+                borderRadius: "10px",
+                background: "#334155",
+                color: "#fff",
+              },
+            })
+          : toast.success("List deleted!");
+
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
+      }
+    });
   };
 
   const handleEditBtn = () => {
@@ -37,7 +67,7 @@ const List = (props) => {
             ? "dark:bg-transparent dark:opacity-60"
             : "bg-gray-100 opacity-60"
           : ""
-      } group border border-slate-400 flex items-center justify-between px-3 py-2 rounded-lg font-light mb-3 ${
+      } group animate__animated animate__zoomIn border border-slate-400 flex items-center justify-between px-3 py-2 rounded-lg font-light mb-3 ${
         props.toggleDark ? "dark:hover:bg-slate-700" : "hover:bg-slate-200"
       } duration-200`}
     >

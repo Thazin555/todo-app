@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const ListCreateForm = (props) => {
   const [text, setText] = useState("");
@@ -11,6 +12,16 @@ const ListCreateForm = (props) => {
     if (event.keyCode === 13) {
       props.addTask(text);
       setText("");
+      props.toggleDark
+        ? toast("List created!", {
+            icon: "👌",
+            style: {
+              borderRadius: "10px",
+              background: "#334155",
+              color: "#fff",
+            },
+          })
+        : toast.success("List created!");
     }
   };
 

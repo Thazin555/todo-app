@@ -4,14 +4,13 @@ import Container from "./components/Container";
 import Heading from "./components/Heading";
 import ListCreateForm from "./components/ListCreateForm";
 import ListGroup from "./components/ListGroup";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [tasks, setTask] = useState([
     { id: 1, job: "Schedule a dentist appointment.", isDone: false },
     { id: 2, job: "Complete one online course module.", isDone: false },
     { id: 3, job: "Plan a weekend outing.", isDone: false },
-    { id: 4, job: "Pay utility bill.", isDone: false },
-    { id: 5, job: "Review and edit project documentation.", isDone: false },
   ]);
 
   const [toggleDark, setToggleDark] = useState(false);
@@ -73,6 +72,7 @@ const App = () => {
           editTask={editTask}
           toggleDark={toggleDark}
         />
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
     </div>
   );
